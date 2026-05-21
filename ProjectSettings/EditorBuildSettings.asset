@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Samples/XR Hands/1.7.3/Hand Capture/HandCapture.unity
+    guid: 1ebe1fe45ff8e46c9ac6fdd6bfd9ec73
+  - enabled: 0
+    path: Assets/Samples/XR Hands/1.7.3/Gestures/HandGestures.unity
+    guid: cd792f2302b8b6f4c9f264e2a4503e15
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0229e94fefc054a4a9b9a163612925d4, type: 2}

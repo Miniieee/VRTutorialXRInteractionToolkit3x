@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "prefabPath": "C:\\Users\\bagyi\\.gradle\\caches\\modules-2\\files-2.1\\com.google.prefab\\cli\\2.1.0\\aa32fec809c44fa531f01dcfb739b5b3304d3050\\cli-2.1.0-all.jar",
+  "packages": [
+    "C:\\Users\\bagyi\\.gradle\\caches\\8.13\\transforms\\6ab912eae8851665d00d65fdcf1c0b2e\\transformed\\jetified-openxr_loader\\prefab",
+    "C:\\Users\\bagyi\\.gradle\\caches\\8.13\\transforms\\1e7cc65d4e74b23bd94dca9ec0ac2eb3\\transformed\\jetified-games-activity-3.0.5\\prefab"
+  ]
+}

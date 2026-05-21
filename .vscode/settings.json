@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "VRTutorialXRInteractionToolkit3x.sln"
+    "dotnet.defaultSolution": "VRTutorialXRInteractionToolkit3x.slnx"
 }
