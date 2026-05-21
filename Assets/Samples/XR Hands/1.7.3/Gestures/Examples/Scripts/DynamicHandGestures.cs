@@ -57,6 +57,9 @@ namespace UnityEngine.XR.Hands.Samples.GestureSample
         [SerializeField, Range(0f, 1f)] private float shapeExitThreshold = 0.65f;
         [SerializeField, Range(0f, 1f)] private float scoreSmoothing = 0.35f;
 
+        [Header("Recovery")]
+        [SerializeField] private float maxRecenterWaitTime = 1.5f;
+
         [Header("Hand Stability")]
         [Tooltip("Maximum allowed wrist movement while swiping. Prevents whole-hand left/right movement from triggering a swipe. 0.015 = 1.5 cm.")]
         [SerializeField] private float maxAllowedWristMovement = 0.015f;
@@ -122,6 +125,7 @@ namespace UnityEngine.XR.Hands.Samples.GestureSample
 
         private Vector3 wristStartLocalPosition;
         private bool hasWristStartPosition;
+        private float recenterStateStartTime;
 
         private void Awake()
         {
@@ -180,6 +184,7 @@ namespace UnityEngine.XR.Hands.Samples.GestureSample
             debugLogInterval = Mathf.Max(0.05f, debugLogInterval);
 
             maxAllowedWristMovement = Mathf.Max(0.001f, maxAllowedWristMovement);
+            maxRecenterWaitTime = Mathf.Max(0.25f, maxRecenterWaitTime);
         }
 
         private IEnumerator FindHandTrackingEventsRoutine()
@@ -509,13 +514,17 @@ namespace UnityEngine.XR.Hands.Samples.GestureSample
         }
 
         private void UpdateWaitingForRecenterAfterSwipe(
-            bool initialDetected,
-            float time,
-            XRHandJointsUpdatedEventArgs eventArgs)
+    bool initialDetected,
+    float time,
+    XRHandJointsUpdatedEventArgs eventArgs)
         {
-            bool recentered = initialDetected && IsThumbRecentered(eventArgs.hand);
+            if (time - recenterStateStartTime > maxRecenterWaitTime)
+            {
+                ResetToWaitingForInitial();
+                return;
+            }
 
-            if (!recentered)
+            if (!initialDetected)
             {
                 recenterStartTime = 0f;
                 return;
@@ -699,6 +708,7 @@ namespace UnityEngine.XR.Hands.Samples.GestureSample
         private void EnterRecenterState()
         {
             recenterStartTime = 0f;
+            recenterStateStartTime = Time.timeSinceLevelLoad;
             state = GestureState.WaitingForRecenterAfterSwipe;
         }
 
